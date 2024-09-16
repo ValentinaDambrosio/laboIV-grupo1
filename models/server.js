@@ -13,11 +13,15 @@ class Server {
   }
 
   rutas () {
+    this.app.use(
+      process.env.API_URL + 'pronostico',
+      require('../routes/pronostico')
+    )
   }
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`La API esta escuchando en el this.PORT ${this.port}`)
+      console.log(`La API esta escuchando en el puerto ${this.port}`)
     })
   }
 }
