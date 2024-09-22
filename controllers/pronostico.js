@@ -15,7 +15,7 @@ const getPronostico = (req, res) => {
       error: 'Es necesario ingresar la longitud'
     })
   }
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain&timezone=America%2FSao_Paulo`
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain&timezone=America%2FSao_Paulo&forecast_days=16`
   axios
     .get(url)
     .then((response) => {
