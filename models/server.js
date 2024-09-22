@@ -18,6 +18,11 @@ class Server {
       require('../routes/pronostico'))
 
     this.app.use(
+      process.env.API_URL + 'historial',
+      require('../routes/historial')
+    )
+    
+    this.app.use(
       process.env.API_URL + 'listado_paises',
       require('../routes/listado_paises'))
 
