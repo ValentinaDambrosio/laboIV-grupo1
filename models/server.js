@@ -15,7 +15,8 @@ class Server {
   rutas () {
     this.app.use(
       process.env.API_URL + 'pronostico',
-      require('../routes/pronostico'))
+      require('../routes/pronostico')
+    )
 
     this.app.use(
       process.env.API_URL + 'historial',
