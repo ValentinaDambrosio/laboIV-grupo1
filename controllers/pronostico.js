@@ -58,6 +58,8 @@ const getPronostico = (req, res) => {
 const getPronosticoHora = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
+  let timezone = req.query.timezone ?? -3
+  timezone = convertirNumeroZonaHoraria(timezone)
   if (latitude == null) {
     res.status(400).json({
       msg: 'Error',
@@ -72,6 +74,7 @@ const getPronosticoHora = (req, res) => {
     })
     return
   }
+
   const hora = req.params.hora
   if (!Number.isInteger(+hora) || hora > 23 || hora < 0) {
     res.status(400).json({
@@ -80,7 +83,9 @@ const getPronosticoHora = (req, res) => {
     })
     return
   }
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain&timezone=America%2FSao_Paulo&forecast_days=1`
+
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain&timezone=${timezone}&forecast_days=1`
+
   axios
     .get(url)
     .then((response) => {
