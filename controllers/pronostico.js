@@ -84,7 +84,7 @@ const getPronosticoHora = (req, res) => {
     return
   }
 
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain&timezone=${timezone}&forecast_days=1`
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain,weather_code&timezone=${timezone}&forecast_days=1`
 
   axios
     .get(url)
