@@ -10,12 +10,12 @@ Obten el prónostico en horas para los próximos días.
 
 El resultado contiene la temperatura, sensación térmica, probabilidad de precipitaciones, de lluvias y código de clima.
 
-| Query Param | Formato           | Obligatorio | Default | Descripcion                                  |
-|-------------|-------------------|-------------|---------|----------------------------------------------|
-| latitud     | número            | si          |         | Latitud de la ciudad a buscar el pronóstico  |
-| longitud    | número            | si          |         | Longitud de la ciudad a buscar el pronóstico |
-| timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados               |
-| dias        | entero (0 - 16)   | no          | 7       | Cantidad de días de pronóstico               |
+| Query Param | Formato           | Obligatorio | Default | Descripcion                                              |
+|-------------|-------------------|-------------|---------|----------------------------------------------------------|
+| latitud     | número            | si          |         | Latitud de la ciudad a buscar el pronóstico              |
+| longitud    | número            | si          |         | Longitud de la ciudad a buscar el pronóstico             |
+| timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados                           |
+| dias        | entero (1 - 16)   | no          | 7       | Cantidad de días de pronóstico (1 es solo el día actual) |
 
 <details>
 <summary>Ejemplo de respuesta</summary>
@@ -134,12 +134,12 @@ Obten el prónostico diario para los próximos días.
 
 El resultado contiene la temperatura máxima y mínima, sensación térmica máxima y mínima, hora de salida y puesta de sol probabilidad máxima de precipitaciones, horas de lluvia y código de clima.
 
-| Query Param | Formato           | Obligatorio | Default | Descripcion                                  |
-|-------------|-------------------|-------------|---------|----------------------------------------------|
-| latitud     | número            | si          |         | Latitud de la ciudad a buscar el pronóstico  |
-| longitud    | número            | si          |         | Longitud de la ciudad a buscar el pronóstico |
-| timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados               |
-| dias        | entero (0 - 16)   | no          | 7       | Cantidad de días de pronóstico               |
+| Query Param | Formato           | Obligatorio | Default | Descripcion                                              |
+|-------------|-------------------|-------------|---------|----------------------------------------------------------|
+| latitud     | número            | si          |         | Latitud de la ciudad a buscar el pronóstico              |
+| longitud    | número            | si          |         | Longitud de la ciudad a buscar el pronóstico             |
+| timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados                           |
+| dias        | entero (1 - 16)   | no          | 7       | Cantidad de días de pronóstico (1 es solo el día actual) |
 
 <details>
 <summary>Ejemplo de respuesta</summary>
