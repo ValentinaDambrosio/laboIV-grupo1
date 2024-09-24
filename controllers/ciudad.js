@@ -1,20 +1,23 @@
 const axios = require('axios')
 
 const getCiudad = (req, res) => {
-  const nombreCiudad = req.params.ciudad
-  const pais = req.params.pais
-  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${nombreCiudad}&count=1&language=es&format=json`
+  const { name } = req.query
+  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${name}&count=100&language=es&format=json`
   axios
     .get(url)
     .then((response) => {
       const { results = [] } = response.data
 
-      const newArray = results.filter(item => item.country.toUpperCase() === pais.toString().toUpperCase())
-
-      res.status(200).json({
-        msg: 'Ok',
-        data: newArray
-      })
+      if (results.length > 0) {
+        res.status(200).json({
+          msg: 'Ok',
+          data: results
+        })
+      } else {
+        res.status(404).json({
+          msg: 'No se encontró la ciudad especificada'
+        })
+      }
     })
     .catch((error) => {
       console.log(error)
