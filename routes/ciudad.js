@@ -3,6 +3,6 @@ const { getCiudad } = require('../controllers/ciudad')
 
 const rutas = Router()
 
-rutas.get('/:ciudad/:pais', getCiudad)
+rutas.get('/', getCiudad)
 
 module.exports = rutas
