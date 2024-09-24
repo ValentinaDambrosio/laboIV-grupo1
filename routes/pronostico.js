@@ -1,9 +1,10 @@
 const { Router } = require('express')
-const { getPronostico, getPronosticoHora } = require('../controllers/pronostico')
+const { getPronosticoHorario, getPronosticoHorarioHora, getPronosticoDiario } = require('../controllers/pronostico')
 
 const rutas = Router()
 
-rutas.get('/', getPronostico)
-rutas.get('/:hora', getPronosticoHora)
+rutas.get('/horario/', getPronosticoHorario)
+rutas.get('/horario/:hora', getPronosticoHorarioHora)
+rutas.get('/diario/', getPronosticoDiario)
 
 module.exports = rutas
