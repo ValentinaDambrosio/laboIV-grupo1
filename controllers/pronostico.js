@@ -5,6 +5,10 @@ const convertirNumeroZonaHoraria = (timezone) => {
   return encodeURIComponent(`Etc/GMT${signo}${Math.abs(timezone)}`)
 }
 
+const estaEntreEnteros = (value, min, max) => {
+  return Number.isInteger(+value) && value <= max && value >= min
+}
+
 const getPronosticoHorario = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
@@ -25,14 +29,14 @@ const getPronosticoHorario = (req, res) => {
     })
     return
   }
-  if (!Number.isInteger(+days) || days > 16 || days < 1) {
+  if (!estaEntreEnteros(days, 1, 16)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La cantidad de días debe ser un número entero entre 1 y 16 inclusive'
     })
     return
   }
-  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+  if (!estaEntreEnteros(timezone, -12, 14)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
@@ -90,7 +94,7 @@ const getPronosticoHorarioHora = (req, res) => {
     })
     return
   }
-  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+  if (!estaEntreEnteros(timezone, -12, 14)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
@@ -101,7 +105,7 @@ const getPronosticoHorarioHora = (req, res) => {
   timezone = convertirNumeroZonaHoraria(timezone)
 
   const hora = req.params.hora
-  if (!Number.isInteger(+hora) || hora > 23 || hora < 0) {
+  if (!estaEntreEnteros(hora, 0, 23)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La hora debe ser un número entero entre 0 y 23 inclusive'
@@ -172,14 +176,14 @@ const getPronosticoDiario = (req, res) => {
     })
     return
   }
-  if (!Number.isInteger(+days) || days > 16 || days < 1) {
+  if (!estaEntreEnteros(days, 1, 16)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La cantidad de días debe ser un número entero entre 1 y 16 inclusive'
     })
     return
   }
-  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+  if (!estaEntreEnteros(timezone, -12, 14)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
