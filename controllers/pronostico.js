@@ -9,8 +9,8 @@ const getPronosticoHorario = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
   let timezone = req.query.timezone ?? -3
-  timezone = convertirNumeroZonaHoraria(timezone)
   const days = req.query.dias ?? 7
+
   if (latitude == null) {
     res.status(400).json({
       msg: 'Error',
@@ -25,6 +25,22 @@ const getPronosticoHorario = (req, res) => {
     })
     return
   }
+  if (!Number.isInteger(+days) || days > 16 || days < 1) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'La cantidad de días debe ser un número entero entre 1 y 16 inclusive'
+    })
+    return
+  }
+  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
+    })
+    return
+  }
+
+  timezone = convertirNumeroZonaHoraria(timezone)
 
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain,weather_code&timezone=${timezone}&forecast_days=${days}`
 
@@ -59,7 +75,7 @@ const getPronosticoHorarioHora = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
   let timezone = req.query.timezone ?? -3
-  timezone = convertirNumeroZonaHoraria(timezone)
+
   if (latitude == null) {
     res.status(400).json({
       msg: 'Error',
@@ -74,6 +90,15 @@ const getPronosticoHorarioHora = (req, res) => {
     })
     return
   }
+  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
+    })
+    return
+  }
+
+  timezone = convertirNumeroZonaHoraria(timezone)
 
   const hora = req.params.hora
   if (!Number.isInteger(+hora) || hora > 23 || hora < 0) {
@@ -131,8 +156,8 @@ const getPronosticoDiario = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
   let timezone = req.query.timezone ?? -3
-  timezone = convertirNumeroZonaHoraria(timezone)
   const days = req.query.dias ?? 7
+
   if (latitude == null) {
     res.status(400).json({
       msg: 'Error',
@@ -147,6 +172,22 @@ const getPronosticoDiario = (req, res) => {
     })
     return
   }
+  if (!Number.isInteger(+days) || days > 16 || days < 1) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'La cantidad de días debe ser un número entero entre 1 y 16 inclusive'
+    })
+    return
+  }
+  if (!Number.isInteger(+timezone) || timezone > 14 || timezone < -12) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'La zona horario (timezone) debe ser un número entero entre -12 y 14 inclusive'
+    })
+    return
+  }
+
+  timezone = convertirNumeroZonaHoraria(timezone)
 
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_hours,precipitation_probability_max&timezone=${timezone}&forecast_days=${days}`
 
