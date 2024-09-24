@@ -4,9 +4,9 @@
 
 Todos los endpoints deben usar el prefijo `/api/v1/`
 
-### /pronostico
+### /pronostico/horario
 
-Obten el prónostico para los próximos días.
+Obten el prónostico en horas para los próximos días.
 
 El resultado contiene la temperatura, sensación térmica, probabilidad de precipitaciones, de lluvias y código de clima.
 
@@ -19,7 +19,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 
 <details>
 <summary>Ejemplo de respuesta</summary>
-`/api/v1/pronostico?longitud=10&latitud=80&dias=1`
+`/api/v1/pronostico/horario?longitud=10&latitud=80&dias=1`
 
 ```json
 {
@@ -78,7 +78,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 ```
 </details>
 
-### /pronostico/[hora]
+### /pronostico/horario/[hora]
 
 Obten el prónostico para una hora determinada del día.
 
@@ -95,7 +95,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 
 <details>
 <summary>Ejemplo de respuesta</summary>
-`/api/v1/pronostico/23?longitud=10&latitud=80`
+`/api/v1/pronostico/horario/23?longitud=10&latitud=80`
 
 ```json
 {
@@ -122,6 +122,69 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
       "precipitation_probability": 53,
       "rain": 0.1,
       "weather_code": 85
+    }
+  }
+}
+```
+</details>
+
+### /pronostico/diario
+
+Obten el prónostico diario para los próximos días.
+
+El resultado contiene la temperatura máxima y mínima, sensación térmica máxima y mínima, hora de salida y puesta de sol probabilidad máxima de precipitaciones, horas de lluvia y código de clima.
+
+| Query Param | Formato           | Obligatorio | Default | Descripcion                                  |
+|-------------|-------------------|-------------|---------|----------------------------------------------|
+| latitud     | número            | si          |         | Latitud de la ciudad a buscar el pronóstico  |
+| longitud    | número            | si          |         | Longitud de la ciudad a buscar el pronóstico |
+| timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados               |
+| dias        | entero (0 - 16)   | no          | 7       | Cantidad de días de pronóstico               |
+
+<details>
+<summary>Ejemplo de respuesta</summary>
+`/api/v1/pronostico/diario?longitud=10&latitud=80&dias=1`
+
+```json
+{
+  "msg": "Ok",
+  "data": {
+    "latitude": 80,
+    "longitude": 10,
+    "generationtime_ms": 0.0979900360107422,
+    "utc_offset_seconds": -10800,
+    "timezone": "Etc/GMT+3",
+    "timezone_abbreviation": "-03",
+    "elevation": 0,
+    "daily_units": {
+      "time": "iso8601",
+      "weather_code": "wmo code",
+      "temperature_2m_max": "°C",
+      "temperature_2m_min": "°C",
+      "apparent_temperature_max": "°C",
+      "apparent_temperature_min": "°C",
+      "sunrise": "iso8601",
+      "sunset": "iso8601",
+      "precipitation_hours": "h",
+      "precipitation_probability_max": "%"
+    },
+    "daily": {
+      "time": [
+        "2024-09-24"
+      ],
+      "weather_code": [80],
+      "temperature_2m_max": [3.5],
+      "temperature_2m_min": [-2],
+      "apparent_temperature_max": [-0.2],
+      "apparent_temperature_min": [-9.1],
+      "sunrise": [
+        "2024-09-24T02:10"
+      ],
+      "sunset": [
+        "2024-09-24T14:13"
+      ],
+      "precipitation_hours": [13],
+      "precipitation_probability_max": [78]
     }
   }
 }

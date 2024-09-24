@@ -5,7 +5,7 @@ const convertirNumeroZonaHoraria = (timezone) => {
   return encodeURIComponent(`Etc/GMT${signo}${Math.abs(timezone)}`)
 }
 
-const getPronostico = (req, res) => {
+const getPronosticoHorario = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
   let timezone = req.query.timezone ?? -3
@@ -55,7 +55,7 @@ const getPronostico = (req, res) => {
     })
 }
 
-const getPronosticoHora = (req, res) => {
+const getPronosticoHorarioHora = (req, res) => {
   const latitude = req.query.latitud
   const longitude = req.query.longitud
   let timezone = req.query.timezone ?? -3
@@ -127,7 +127,57 @@ const getPronosticoHora = (req, res) => {
     })
 }
 
+const getPronosticoDiario = (req, res) => {
+  const latitude = req.query.latitud
+  const longitude = req.query.longitud
+  let timezone = req.query.timezone ?? -3
+  timezone = convertirNumeroZonaHoraria(timezone)
+  const days = req.query.dias ?? 7
+  if (latitude == null) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'Es necesario ingresar la latitud'
+    })
+    return
+  }
+  if (longitude == null) {
+    res.status(400).json({
+      msg: 'Error',
+      error: 'Es necesario ingresar la longitud'
+    })
+    return
+  }
+
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_hours,precipitation_probability_max&timezone=${timezone}&forecast_days=${days}`
+
+  axios
+    .get(url)
+    .then((response) => {
+      const { data = [] } = response
+
+      if (data.length === 0) {
+        res.status(404).json({
+          msg: 'Error',
+          error: 'No hay datos disponibles'
+        })
+      }
+
+      res.status(200).json({
+        msg: 'Ok',
+        data
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+
+      res.status(500).json({
+        msg: 'Error',
+        error
+      })
+    })
+}
 module.exports = {
-  getPronostico,
-  getPronosticoHora
+  getPronosticoHorario,
+  getPronosticoHorarioHora,
+  getPronosticoDiario
 }
