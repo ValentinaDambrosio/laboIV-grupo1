@@ -13,11 +13,32 @@ class Server {
   }
 
   rutas () {
+    this.app.use(
+      process.env.API_URL + 'pronostico',
+      require('../routes/pronostico')
+    )
+
+    this.app.use(
+      process.env.API_URL + 'historial',
+      require('../routes/historial')
+    )
+
+    this.app.use(
+      process.env.API_URL + 'listado_paises',
+      require('../routes/listado_paises'))
+
+    this.app.use(
+      process.env.API_URL + 'ciudad',
+      require('../routes/ciudad'))
+
+    this.app.use(
+      process.env.API_URL + 'foto',
+      require('../routes/foto'))
   }
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`La API esta escuchando en el this.PORT ${this.port}`)
+      console.log(`La API esta escuchando en el puerto ${this.port}`)
     })
   }
 }
