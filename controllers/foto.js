@@ -1,9 +1,8 @@
 const axios = require('axios')
 
 const getFoto = (req, res) => {
-  const apiKEY = 'OzJDnTlHXbFakYV5Dy590mg6YKlmltIFlZTh_9UGkbg'
   const fotoClima = req.params.fotoClima
-  const url = `https://api.unsplash.com/search/photos?query=${fotoClima}&client_id=${apiKEY}&content_filter=high`
+  const url = `https://api.unsplash.com/search/photos?query=${fotoClima}&client_id=${process.env.API_KEY_UNSPLASH}&content_filter=high`
   axios
     .get(url)
     .then((response) => {
