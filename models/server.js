@@ -24,10 +24,6 @@ class Server {
     )
 
     this.app.use(
-      process.env.API_URL + 'listado_paises',
-      require('../routes/listado_paises'))
-
-    this.app.use(
       process.env.API_URL + 'ciudad',
       require('../routes/ciudad'))
 
