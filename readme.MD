@@ -296,7 +296,7 @@ El resultado contiene el país, dos abreviaturas del país y una lista de ciudad
 
 ### /foto/[fotoClima]
 
-Obtén una foto del clima actual.
+Obtén una foto del clima.
 
 El resultado contiene la url de la foto.
 
