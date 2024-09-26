@@ -224,5 +224,7 @@ const getPronosticoDiario = (req, res) => {
 module.exports = {
   getPronosticoHorario,
   getPronosticoHorarioHora,
-  getPronosticoDiario
+  getPronosticoDiario,
+  convertirNumeroZonaHoraria,
+  estaEntreEnteros
 }
