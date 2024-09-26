@@ -190,3 +190,129 @@ El resultado contiene la temperatura máxima y mínima, sensación térmica máx
 }
 ```
 </details>
+
+### /ciudad
+
+Obtén una lista de todas las ciudades del mundo.
+
+El resultado contiene el país, dos abreviaturas del país y una lista de ciudades de ese país.
+
+| Query Params | Formato | Obligatorio | Descripción                                 |
+|--------------|---------|-------------|---------------------------------------------|
+| nombre       | String  | No          | Filtra ciudades con el nombre proporcionado |
+
+<details>
+<summary>Ejemplo de respuesta</summary>
+`api/v1/ciudad`
+
+```json
+{
+  "msg": "ok",
+  "data": {
+    "error": false,
+    "msg": "countries and cities retrieved",
+    "data": [
+      {
+        "iso2": "AF",
+        "iso3": "AFG",
+        "country": "Afghanistan",
+        "cities": [
+          "Herat",
+          "Kabul",
+          "Kandahar",
+          "Molah",
+          "Rana",
+          "Shar",
+          "Sharif",
+          "Wazir Akbar Khan"
+        ]
+      },
+      {
+        "iso2": "AL",
+        "iso3": "ALB",
+        "country": "Albania",
+        "cities": [
+          "Elbasan",
+          "Petran",
+          "Pogradec",
+          "Shkoder",
+          "Tirana",
+          "Ura Vajgurore"
+        ]
+      },
+      ...
+    ]
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Ejemplo de respuesta con Query Params</summary>
+`api/v1/ciudad?nombre=Bahia%20Blanca`
+
+```json
+{
+  "msg": "Ok",
+  "data": [
+    {
+      "id": 3865086,
+      "name": "Bahía Blanca",
+      "latitude": -38.71959,
+      "longitude": -62.27243,
+      "elevation": 24,
+      "feature_code": "PPLA2",
+      "country_code": "AR",
+      "admin1_id": 3435907,
+      "admin2_id": 3865084,
+      "timezone": "America/Argentina/Buenos_Aires",
+      "population": 276546,
+      "country_id": 3865483,
+      "country": "Argentina",
+      "admin1": "Buenos Aires",
+      "admin2": "Partido de Bahía Blanca"
+    },
+    {
+      "id": 3923420,
+      "name": "Bahía Blanca",
+      "latitude": -14.43333,
+      "longitude": -62.3,
+      "elevation": 195,
+      "feature_code": "PPL",
+      "country_code": "BO",
+      "admin1_id": 3904907,
+      "timezone": "America/La_Paz",
+      "country_id": 3923057,
+      "country": "Bolivia",
+      "admin1": "Santa Cruz"
+    },
+    ...
+  ]
+}
+```
+
+</details>
+
+### /foto/[fotoClima]
+
+Obtén una foto del clima actual.
+
+El resultado contiene la url de la foto.
+
+| Path Params | Formato | Obligatorio | Descripción      |
+|-------------|---------|-------------|------------------|
+| fotoClima   | String  | Si          | Término a buscar |
+
+<details>
+<summary>Ejemplo de respuesta</summary>
+`api/v1/foto/windy`
+
+```json
+{
+  "msg": "Ok",
+  "data": "https://images.unsplash.com/photo-1470176519524-3c2f481c8c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NTc4ODl8MHwxfHNlYXJjaHwxfHx3aW5keXxlbnwxfHx8fDE3MjcyOTg5OTl8MA&ixlib=rb-4.0.3&q=80&w=200"
+}
+```
+
+</details>
