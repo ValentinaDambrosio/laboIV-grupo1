@@ -1,6 +1,22 @@
-# TP Labo IV - Grupo 1
+# ⛅ TP Labo IV - Grupo 1 - API del clima ⛅
 
-## Endpoints
+## 📋 Descripción del proyecto
+
+Esta es la primera parte de un proyecto realizado para la materia "Laboratorio IV" de la Tecnicatura Universitaria en Programación, dictada en la UTN-FRBB. Dicho proyecto consiste en la creación de una API donde cada integrante del grupo debe cubrir los siguietnes endpoints/request:
+- Listado de registros en formato json que muestre 50 o más registros.
+- Visualización de un registro en particular (param id).
+- Agregar query params al listado del punto “1” para filtrar la información por algún campo relevante.
+
+### 🛠 Tecnologías utilizadas
+
+🟢 Node Js
+🚂 Express Js
+🟨 JavaScript
+☁️ Open-Meteo API
+📸 Unplash Image API
+🌎 Countries & Cities API
+
+## 🔗 Endpoints
 
 Todos los endpoints deben usar el prefijo `/api/v1/`
 
@@ -18,7 +34,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 | dias        | entero (1 - 16)   | no          | 7       | Cantidad de días de pronóstico (1 es solo el día actual) |
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `/api/v1/pronostico/horario?longitud=10&latitud=80&dias=1`
 
 ```json
@@ -94,7 +110,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 | timezone    | entero (-12 - 14) | no          | -3      | Zona horario de los resultados               |
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `/api/v1/pronostico/horario/23?longitud=10&latitud=80`
 
 ```json
@@ -142,7 +158,7 @@ El resultado contiene la temperatura máxima y mínima, sensación térmica máx
 | dias        | entero (1 - 16)   | no          | 7       | Cantidad de días de pronóstico (1 es solo el día actual) |
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `/api/v1/pronostico/diario?longitud=10&latitud=80&dias=1`
 
 ```json
@@ -202,7 +218,7 @@ El resultado contiene el país, dos abreviaturas del país y una lista de ciudad
 | nombre       | String  | No          | Filtra ciudades con el nombre proporcionado |
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `api/v1/ciudad`
 
 ```json
@@ -249,7 +265,7 @@ El resultado contiene el país, dos abreviaturas del país y una lista de ciudad
 </details>
 
 <details>
-<summary>Ejemplo de respuesta con Query Params</summary>
+<summary>✅ Ejemplo de respuesta con Query Params</summary>
 `api/v1/ciudad?nombre=Bahia%20Blanca`
 
 ```json
@@ -305,7 +321,7 @@ El resultado contiene la url de la foto.
 | fotoClima   | String  | Si          | Término a buscar |
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `api/v1/foto/windy`
 
 ```json
@@ -317,7 +333,7 @@ El resultado contiene la url de la foto.
 
 </details>
 
-### /Historial
+### /historial
 
 Obtén el historial del clima de días pasados.
 
@@ -339,7 +355,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 | anioFin        | entero (1940 - año actual)   | no          | año actual       | Año de fin del periodo que desea buscar|
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `api/v1/historial/?longitud=12&latitud=12&diaInicio=25&mesInicio=9&diaFin27&mesFin=9`
 
 ```json
@@ -517,7 +533,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 
 </details>
 
-### /Historial/[dia]
+### /historial/[dia]
 
 Obtén el historial del clima de un día en específico.
 
@@ -535,7 +551,7 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 | anio       | entero (1940 - año actual)   | no          | año actual       | Año de la fecha que desea buscar|
 
 <details>
-<summary>Ejemplo de respuesta</summary>
+<summary>✅ Ejemplo de respuesta</summary>
 `api/v1/historial/2?longitud=12&latitud=12`
 
 ```json
@@ -720,3 +736,9 @@ El resultado contiene la temperatura, sensación térmica, probabilidad de preci
 ```
 
 </details>
+
+## 👥 Autores
+
+- Abraham Mateo
+- Dambrosio Valentina
+- Fell Sebastián
