@@ -10,28 +10,9 @@ const formatValue = (number) => {
   return number.toString().padStart(2, '0')
 }
 
-const validateDate = (day, month, year) => {
-  day = Number(day)
-  month = Number(month)
-  year = Number(year)
-
-  const month31 = [1, 3, 5, 7, 8, 10, 12]
-  const month30 = [4, 6, 9, 11]
-
-  if (month31.includes(month)) {
-    return day <= 31
-  }
-
-  if (month30.includes(month)) {
-    return day <= 30
-  }
-
-  if (month === 2) {
-    const esBisiesto = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)
-    return esBisiesto ? day <= 29 : day <= 28
-  }
-
-  return false
+const validateDate = (date) => {
+  const fechaObj = new Date(date)
+  return !isNaN(fechaObj.getTime()) && fechaObj <= new Date()
 }
 
 const fecha1MenorFecha2 = (fecha1, fecha2) => {
@@ -99,14 +80,14 @@ const getHistorial = (req, res) => {
     })
     return
   }
-  if (!validateDate(startDay, startMonth, startYear)) {
+  if (!validateDate(startDate)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La fecha de inicio es inválida'
     })
     return
   }
-  if (!validateDate(endDay, endMonth, endYear)) {
+  if (!validateDate(endDate)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La fecha de fin es inválida'
@@ -199,7 +180,7 @@ const getHistorialPuntual = (req, res) => {
     })
     return
   }
-  if (!validateDate(day, month, year)) {
+  if (!validateDate(standardDate)) {
     res.status(400).json({
       msg: 'Error',
       error: 'La fecha es inválida'
