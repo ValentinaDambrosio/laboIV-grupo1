@@ -111,6 +111,13 @@ const getHistorial = (req, res) => {
     .then((response) => {
       const { data = [] } = response
 
+      if (data.length === 0) {
+        res.status(404).json({
+          msg: 'Error',
+          error: 'No hay datos disponibles'
+        })
+        return
+      }
       res.status(200).json({
         msg: 'Ok',
         data
