@@ -316,3 +316,407 @@ El resultado contiene la url de la foto.
 ```
 
 </details>
+
+### /Historial
+
+Obtén el historial del clima de días pasados.
+
+> [!IMPORTANT]
+> Si no se aclara algún query de la fecha de inicio del periodo que desea buscar, se tomará por default el valor correspondiente a 50 días anteriores a la fecha actual.
+
+El resultado contiene la temperatura, sensación térmica, probabilidad de precipitaciones, de lluvias y código de clima.
+
+| Query Param | Formato           | Obligatorio | Default | Descripcion                                              |
+|-------------|-------------------|-------------|---------|----------------------------------------------------------|
+| latitud     | número            | si          |         | Latitud de la ciudad a buscar el historial              |
+| longitud    | número            | si          |         | Longitud de la ciudad a buscar el historial             |
+| timezone    | entero (-12 - 14) | no          | -3      | Zona horaria de los resultados                           |
+| diaInicio        | entero (1 - 31)   | no          | ver important       | Día de inicio del periodo que desea buscar|
+| mesInicio        | entero (1 - 12)   | no          | ver important       | Mes de inicio del periodo que desea buscar|
+| anioInicio        | entero (1940 - año actual)   | no          | ver important       | Año de inicio del periodo que desea buscar|
+| diaFin        | entero (1 - 31)   | no          | día actual       | Día de fin del periodo que desea buscar|
+| mesFin        | entero (1 - 12)   | no          | mes actual       | Mes de fin del periodo que desea buscar|
+| anioFin        | entero (1940 - año actual)   | no          | año actual       | Año de fin del periodo que desea buscar|
+
+<details>
+<summary>Ejemplo de respuesta</summary>
+`api/v1/historial/?longitud=12&latitud=12&diaInicio=25&mesInicio=9&diaFin27&mesFin=9`
+
+```json
+{
+    "msg": "Ok",
+    "data": {
+        "latitude": 11.98594,
+        "longitude": 12.037702,
+        "generationtime_ms": 0.38301944732666016,
+        "utc_offset_seconds": -10800,
+        "timezone": "Etc/GMT+3",
+        "timezone_abbreviation": "-03",
+        "elevation": 369,
+        "hourly_units": {
+            "time": "iso8601",
+            "temperature_2m": "°C",
+            "apparent_temperature": "°C",
+            "precipitation_probability": "undefined",
+            "rain": "mm",
+            "weather_code": "wmo code"
+        },
+        "hourly": {
+            "time": [
+                "2024-09-25T00:00",
+                "2024-09-25T01:00",
+                "2024-09-25T02:00",
+                "2024-09-25T03:00",
+                "2024-09-25T04:00",
+                "2024-09-25T05:00",
+                "2024-09-25T06:00",
+                "2024-09-25T07:00",
+                "2024-09-25T08:00",
+                "2024-09-25T09:00",
+                "2024-09-25T10:00",
+                "2024-09-25T11:00",
+                "2024-09-25T12:00",
+                "2024-09-25T13:00",
+                "2024-09-25T14:00",
+                "2024-09-25T15:00",
+                "2024-09-25T16:00",
+                "2024-09-25T17:00",
+                "2024-09-25T18:00",
+                "2024-09-25T19:00",
+                "2024-09-25T20:00",
+                "2024-09-25T21:00",
+                "2024-09-25T22:00",
+                "2024-09-25T23:00",
+                ...
+            ],
+            "temperature_2m": [
+                22.5,
+                22.2,
+                21.8,
+                23.4,
+                25.9,
+                28,
+                29.5,
+                30.7,
+                31.3,
+                31.3,
+                32.2,
+                32.1,
+                31.8,
+                30.6,
+                28.3,
+                26.6,
+                25.8,
+                26.4,
+                26.8,
+                24.9,
+                24.1,
+                23.9,
+                ...
+            ],
+            "apparent_temperature": [
+                26.1,
+                25.8,
+                25.4,
+                27.1,
+                30.3,
+                31.8,
+                33.4,
+                35.5,
+                36,
+                35.2,
+                36.7,
+                35.7,
+                34.4,
+                34.3,
+                31.5,
+                29.9,
+                29.5,
+                30.1,
+                30.6,
+                28.7,
+                27.8,
+                27.4,
+                ...
+            ],
+            "precipitation_probability": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                ...
+            ],
+            "rain": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                ...
+            ],
+            "weather_code": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                3,
+                3,
+                2,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                ...
+            ]
+        }
+    }
+}
+```
+
+</details>
+
+### /Historial/[dia]
+
+Obtén el historial del clima de un día en específico.
+
+> [!IMPORTANT]
+> El día debe ser un número entero entre 1 y 31.
+
+El resultado contiene la temperatura, sensación térmica, probabilidad de precipitaciones, de lluvias y código de clima.
+
+| Query Param | Formato           | Obligatorio | Default | Descripcion                                              |
+|-------------|-------------------|-------------|---------|----------------------------------------------------------|
+| latitud     | número            | si          |         | Latitud de la ciudad a buscar el historial              |
+| longitud    | número            | si          |         | Longitud de la ciudad a buscar el historial             |
+| timezone    | entero (-12 - 14) | no          | -3      | Zona horaria de los resultados                           |
+| mes       | entero (1 - 12)   | no          | mes actual       | Mes de la fecha que desea buscar|
+| anio       | entero (1940 - año actual)   | no          | año actual       | Año de la fecha que desea buscar|
+
+<details>
+<summary>Ejemplo de respuesta</summary>
+`api/v1/historial/2?longitud=12&latitud=12`
+
+```json
+{
+    "msg": "Ok",
+    "data": {
+        "latitude": 11.98594,
+        "longitude": 12.037702,
+        "generationtime_ms": 0.14197826385498047,
+        "utc_offset_seconds": -10800,
+        "timezone": "Etc/GMT+3",
+        "timezone_abbreviation": "-03",
+        "elevation": 369,
+        "hourly_units": {
+            "time": "iso8601",
+            "temperature_2m": "°C",
+            "apparent_temperature": "°C",
+            "precipitation_probability": "undefined",
+            "rain": "mm",
+            "weather_code": "wmo code"
+        },
+        "hourly": {
+            "time": [
+                "2024-09-02T00:00",
+                "2024-09-02T01:00",
+                "2024-09-02T02:00",
+                "2024-09-02T03:00",
+                "2024-09-02T04:00",
+                "2024-09-02T05:00",
+                "2024-09-02T06:00",
+                "2024-09-02T07:00",
+                "2024-09-02T08:00",
+                "2024-09-02T09:00",
+                "2024-09-02T10:00",
+                "2024-09-02T11:00",
+                "2024-09-02T12:00",
+                "2024-09-02T13:00",
+                "2024-09-02T14:00",
+                "2024-09-02T15:00",
+                "2024-09-02T16:00",
+                "2024-09-02T17:00",
+                "2024-09-02T18:00",
+                "2024-09-02T19:00",
+                "2024-09-02T20:00",
+                "2024-09-02T21:00",
+                "2024-09-02T22:00",
+                "2024-09-02T23:00"
+            ],
+            "temperature_2m": [
+                24.4,
+                24.1,
+                23.8,
+                24.3,
+                25.3,
+                26.2,
+                27.5,
+                28,
+                28.6,
+                28.9,
+                29.4,
+                29.4,
+                28.5,
+                28.1,
+                26.9,
+                25.7,
+                25.2,
+                25.1,
+                24.6,
+                24.3,
+                23.9,
+                23.4,
+                23.1,
+                22.8
+            ],
+            "apparent_temperature": [
+                27.3,
+                26.9,
+                26.2,
+                26.8,
+                28.2,
+                29.1,
+                30.6,
+                31,
+                31.8,
+                32.1,
+                31.8,
+                31.2,
+                31.2,
+                31.7,
+                31.1,
+                30.2,
+                30.2,
+                30.9,
+                29.9,
+                28.7,
+                27.9,
+                27.9,
+                27.4,
+                26.7
+            ],
+            "precipitation_probability": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "rain": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0.1,
+                0.1,
+                0.1,
+                0,
+                0,
+                0.1,
+                0,
+                0,
+                0.2,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.5,
+                1,
+                0.8,
+                2.2
+            ],
+            "weather_code": [
+                0,
+                1,
+                1,
+                2,
+                3,
+                1,
+                1,
+                51,
+                51,
+                51,
+                1,
+                1,
+                51,
+                1,
+                1,
+                51,
+                53,
+                53,
+                53,
+                53,
+                53,
+                55,
+                53,
+                61
+            ]
+        }
+    }
+}
+```
+
+</details>
