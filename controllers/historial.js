@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { convertirNumeroZonaHoraria, estaEntreEnteros } = require('./pronostico')
+const { convertirNumeroZonaHoraria, estaEntreEnteros } = require('./utils/utils')
 
 const convertirFechaAString = (day, month, year) => {
   const date = `${year}-${month}-${day}`
