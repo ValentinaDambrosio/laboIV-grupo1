@@ -1,6 +1,5 @@
 const { Router } = require('express')
-const { getHistorial, getHistorialPuntual } = require('../controllers/historial'
-)
+const { getHistorial, getHistorialPuntual } = require('../controllers/historial')
 
 const rutas = Router()
 
