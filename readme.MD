@@ -20,6 +20,9 @@ Esta es la primera parte de un proyecto realizado para la materia "Laboratorio I
 
 Todos los endpoints deben usar el prefijo `/api/v1/`
 
+> [!IMPORTANT]
+> Si lanza un error "ETIMEDOUT" al querer ejecutar un endpoint, pruebe nuevamente.
+
 ### /pronostico/horario
 
 Obten el prónostico en horas para los próximos días.
