@@ -7,14 +7,14 @@ Esta es la primera parte de un proyecto realizado para la materia "Laboratorio I
 - Visualización de un registro en particular (param id).
 - Agregar query params al listado del punto “1” para filtrar la información por algún campo relevante.
 
-### 🛠 Tecnologías utilizadas
+## 🛠 Tecnologías utilizadas
 
-🟢 Node Js
-🚂 Express Js
-🟨 JavaScript
-☁️ Open-Meteo API
-📸 Unplash Image API
-🌎 Countries & Cities API
+- 🟢 Node Js
+- 🚂 Express Js
+- 🟨 JavaScript
+- ☁️ Open-Meteo API
+- 📸 Unplash Image API
+- 🌎 Countries & Cities API
 
 ## 🔗 Endpoints
 
