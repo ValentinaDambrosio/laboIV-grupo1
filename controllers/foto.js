@@ -1,8 +1,8 @@
 const axios = require('axios')
 
 const getFoto = (req, res) => {
-  const fotoClima = req.params.fotoClima
-  const url = `https://api.unsplash.com/search/photos?query=${fotoClima}&client_id=${process.env.API_KEY_UNSPLASH}&content_filter=high`
+  const fotoBandera = req.params.fotoBandera
+  const url = `https://flagcdn.com/w80/${fotoBandera}.png`
   axios
     .get(url)
     .then((response) => {
@@ -17,7 +17,7 @@ const getFoto = (req, res) => {
         })
       } else {
         res.status(404).json({
-          msg: 'No se encontraron fotos para la ciudad especificada'
+          msg: 'No se encontraró foto de la bandera para el país especificado'
         })
       }
     })
