@@ -3,6 +3,6 @@ const { getFoto } = require('../controllers/foto')
 
 const rutas = Router()
 
-rutas.get('/:fotoClima', getFoto)
+rutas.get('/:fotoBandera', getFoto)
 
 module.exports = rutas
