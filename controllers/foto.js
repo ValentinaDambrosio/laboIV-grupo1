@@ -1,34 +1,20 @@
 const axios = require('axios')
 
-const getFoto = (req, res) => {
-  const fotoClima = req.params.fotoClima
-  const url = `https://api.unsplash.com/search/photos?query=${fotoClima}&client_id=${process.env.API_KEY_UNSPLASH}&content_filter=high`
-  axios
-    .get(url)
-    .then((response) => {
-      const { results = [] } = response.data
+const getFoto = async (req, res) => {
+  const fotoBandera = req.params.fotoBandera
+  const url = `https://flagcdn.com/w80/${fotoBandera}.png`
 
-      if (results.length > 0) {
-        const fotoData = results[0].urls.thumb
-
-        res.status(200).json({
-          msg: 'Ok',
-          data: fotoData
-        })
-      } else {
-        res.status(404).json({
-          msg: 'No se encontraron fotos para la ciudad especificada'
-        })
-      }
+  try {
+    const response = await axios.get(url, {
+      responseType: 'arraybuffer'
     })
-    .catch((error) => {
-      console.log(error)
 
-      res.status(400).json({
-        msg: 'Error',
-        error
-      })
-    })
+    res.setHeader('Content-Type', 'image/png')
+    res.send(response.data)
+  } catch (error) {
+    console.error('Error al obtener la imagen:', error.message)
+    res.status(404).send('No se encontró la imagen de la bandera.')
+  }
 }
 
 module.exports = {
