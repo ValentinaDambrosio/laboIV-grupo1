@@ -315,23 +315,19 @@ El resultado contiene el país, dos abreviaturas del país y una lista de ciudad
 
 ### /foto/[fotoClima]
 
-Obtén una foto del clima.
+Obtén una foto de la bandera del país que pertenece la ciudad.
 
-El resultado contiene la url de la foto.
+El resultado contiene el .png de la foto de la bandera.
 
-| Path Params | Formato | Obligatorio | Descripción      |
-|-------------|---------|-------------|------------------|
-| fotoClima   | String  | Si          | Término a buscar |
+| Path Params   | Formato | Obligatorio | Descripción      |
+|-------------- |---------|-------------|------------------|
+| fotoBandera   | String  | Si          | Bandera a buscar |
 
 <details>
 <summary>✅ Ejemplo de respuesta</summary>
-`api/v1/foto/windy`
+`api/v1/foto/ar`
 
-```json
-{
-  "msg": "Ok",
-  "data": "https://images.unsplash.com/photo-1470176519524-3c2f481c8c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NTc4ODl8MHwxfHNlYXJjaHwxfHx3aW5keXxlbnwxfHx8fDE3MjcyOTg5OTl8MA&ixlib=rb-4.0.3&q=80&w=200"
-}
+```http://127.0.0.1:3000/api/v1/foto/ar
 ```
 
 </details>
